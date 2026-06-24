@@ -1,0 +1,6 @@
+{
+  "name": "Fahim's Web3 Portfolio",
+  "description": "Interactive professional crypto and blockchain portfolio for Fahim, showcasing branding, smart contracts, AMAs, and custom AI chat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

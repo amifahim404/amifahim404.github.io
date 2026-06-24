@@ -1,0 +1,826 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #0e0e11;
+  --bg-card: #0d0d10;
+  --bg-card-hover: #141418;
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  
+  --border-primary: rgba(255, 255, 255, 0.12);
+  --border-sec: #18181c;
+  --border-card: #1f1f23;
+  --glass-bg: rgba(10, 10, 12, 0.65);
+  --grid-color: rgba(239, 68, 68, 0.035);
+
+  /* Specific mapping overrides for seamless auto-theme adapt */
+  --bg-override-black: #000000;
+  --bg-override-zinc-950: #0a0a0d;
+  --bg-override-zinc-900: #121215;
+  --bg-override-zinc-850: #242429;
+  --bg-override-zinc-800: #2e2e36;
+  
+  --text-override-white: #ffffff;
+  --text-override-zinc-100: #f4f4f5;
+  --text-override-zinc-200: #e4e4e7;
+  --text-override-zinc-300: #d4d4d8;
+  --text-override-zinc-400: #a1a1aa;
+  --text-override-zinc-500: #71717a;
+  --text-override-zinc-600: #52525b;
+
+  --border-override-zinc-900: rgba(30, 30, 35, 0.82);
+  --border-override-zinc-850: #242429;
+  --border-override-zinc-800: #2e2e36;
+  
+  --sky-955: #082f49;
+  --sky-405: #38bdf8;
+  --indigo-955: #1e1b4b;
+  --indigo-405: #818cf8;
+  --emerald-955: #022c22;
+  --emerald-905: #064e3b;
+  --emerald-405: #34d399;
+  --zinc-905: #1c1c20;
+  --zinc-305: #d4d4d8;
+  
+  --rose-955: #4c0519;
+  --red-955: #450a0a;
+  --orange-955: #431407;
+  --orange-405: #fb923c;
+  --blue-955: #172554;
+  --blue-405: #60a5fa;
+  --purple-955: #3b0764;
+  --purple-405: #c084fc;
+  --amber-955: #451a03;
+  --amber-405: #fbbf24;
+  --stone-905: #1c1917;
+
+  --gradient-overlay: rgba(239, 68, 68, 0.015);
+
+  /* Unified Border Radius System */
+  --radius-sm: 0.375rem;   /* 6px - Perfect for smaller tags, badge buttons */
+  --radius-md: 0.5rem;     /* 8px - Secondary buttons, smaller inputs */
+  --radius-lg: 0.75rem;    /* 12px - Forms, cards, main buttons */
+  --radius-xl: 1rem;       /* 16px - Medium cards, standard panels */
+  --radius-2xl: 1.5rem;    /* 24px - Large containers, widgets */
+  --radius-3xl: 2rem;      /* 32px - Layout sections, hero graphics */
+}
+
+.light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #fafafa;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f5f5f7;
+  --text-primary: #121214;
+  --text-secondary: #4a4a4e;
+  --text-muted: #7e7e83;
+  
+  --border-primary: rgba(15, 23, 42, 0.12);
+  --border-sec: #eaeaea;
+  --border-card: #e5e5e7;
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --grid-color: rgba(0, 0, 0, 0.02);
+
+  /* Safe mapping overrides for beautiful pristine light mode, keeping high text contrast */
+  --bg-override-black: #ffffff;
+  --bg-override-zinc-950: #ffffff;
+  --bg-override-zinc-900: #f1f5f9;
+  --bg-override-zinc-850: #cbd5e1;
+  --bg-override-zinc-800: #94a3b8;
+  
+  --text-override-white: #121214;
+  --text-override-zinc-100: #121214;
+  --text-override-zinc-200: #252528;
+  --text-override-zinc-300: #3a3a3d;
+  --text-override-zinc-400: #55555a;
+  --text-override-zinc-500: #7d7d82;
+  --text-override-zinc-600: #939396;
+
+  --border-override-zinc-900: #cbd5e1;
+  --border-override-zinc-850: #cbd5e1;
+  --border-override-zinc-800: #94a3b8;
+  
+  --sky-955: #e0f2fe;
+  --sky-405: #0369a1;
+  --indigo-955: #e0e7ff;
+  --indigo-405: #4338ca;
+  --emerald-955: #d1fae5;
+  --emerald-905: #ecfdf5;
+  --emerald-405: #047857;
+  --zinc-905: #e2e8f0;
+  --zinc-305: #334155;
+  
+  --rose-955: #ffe4e6;
+  --red-955: #fee2e2;
+  --orange-955: #ffedd5;
+  --orange-405: #c2410c;
+  --blue-955: #dbeafe;
+  --blue-405: #1d4ed8;
+  --purple-955: #f3e8ff;
+  --purple-405: #6b21a8;
+  --amber-955: #fef3c7;
+  --amber-405: #b45309;
+  --stone-905: #f5f5f4;
+
+  --gradient-overlay: transparent;
+}
+
+@theme {
+  --font-sans: "Outfit", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-cyber-red: #ef4444;
+  --color-cyber-dark: var(--bg-primary);
+  
+  --color-zinc-950: var(--bg-override-zinc-950);
+  --color-zinc-900: var(--zinc-905);
+  --color-zinc-850: var(--bg-override-zinc-850);
+  --color-zinc-805: var(--bg-override-zinc-850);
+  --color-zinc-800: var(--bg-override-zinc-800);
+  
+  --color-zinc-100: var(--text-override-zinc-100);
+  --color-zinc-200: var(--text-override-zinc-200);
+  --color-zinc-300: var(--zinc-305);
+  --color-zinc-400: var(--text-override-zinc-400);
+  --color-zinc-500: var(--text-override-zinc-500);
+  --color-zinc-650: var(--text-override-zinc-600);
+  --color-zinc-600: var(--text-override-zinc-600);
+
+  /* Connected brand systems */
+  --color-sky-950: var(--sky-955);
+  --color-sky-400: var(--sky-405);
+  --color-indigo-950: var(--indigo-955);
+  --color-indigo-400: var(--indigo-405);
+  --color-emerald-950: var(--emerald-955);
+  --color-emerald-900: var(--emerald-905);
+  --color-emerald-400: var(--emerald-405);
+
+  --color-rose-955: var(--rose-955);
+  --color-rose-950: var(--rose-955);
+  --color-red-955: var(--red-955);
+  --color-red-950: var(--red-955);
+  --color-orange-955: var(--orange-955);
+  --color-orange-950: var(--orange-955);
+  --color-orange-400: var(--orange-405);
+  --color-blue-955: var(--blue-955);
+  --color-blue-950: var(--blue-955);
+  --color-blue-400: var(--blue-405);
+  --color-purple-955: var(--purple-955);
+  --color-purple-950: var(--purple-955);
+  --color-purple-400: var(--purple-405);
+  --color-amber-955: var(--amber-955);
+  --color-amber-950: var(--amber-955);
+  --color-amber-400: var(--amber-405);
+  --color-stone-900: var(--stone-905);
+  
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  /* Global Border Radius Mappings */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
+}
+
+/* Smooth transitions globally for background and borders */
+body, header, main, section, footer, button, input, textarea, select, .glass-panel {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 350ms;
+}
+
+h1, h2, h3, h4, p, span, svg, a {
+  transition-property: color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Base style resets and customizations */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cyber-dark);
+  color: var(--color-zinc-100);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar for a premium feeling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cyber-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: #310a0a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ef4444;
+}
+
+/* Specific styling for elements utilizing scrollbar-thin, ensuring dark elements styled correctly even inside light mode parents */
+.scrollbar-thin::-webkit-scrollbar,
+[class*="bg-zinc-950"]::-webkit-scrollbar,
+[class*="bg-zinc-900"]::-webkit-scrollbar,
+#neural-cyber-chat-drawer ::-webkit-scrollbar,
+#neural-cyber-chat-drawer::-webkit-scrollbar,
+#neural-chat-message-container::-webkit-scrollbar,
+#neural-chat-message-container ::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.scrollbar-thin::-webkit-scrollbar-track,
+[class*="bg-zinc-950"]::-webkit-scrollbar-track,
+[class*="bg-zinc-900"]::-webkit-scrollbar-track,
+#neural-cyber-chat-drawer ::-webkit-scrollbar-track,
+#neural-chat-message-container::-webkit-scrollbar-track,
+#neural-chat-message-container ::-webkit-scrollbar-track {
+  background: rgba(10, 10, 13, 0.95) !important;
+}
+
+/* Light mode overrides for scrollbar-thin track background to avoid ugly dark backgrounds */
+.light .scrollbar-thin::-webkit-scrollbar-track,
+.light [class*="bg-zinc-950"]::-webkit-scrollbar-track,
+.light [class*="bg-zinc-900"]::-webkit-scrollbar-track,
+.light #neural-cyber-chat-drawer ::-webkit-scrollbar-track,
+.light #neural-chat-message-container::-webkit-scrollbar-track,
+.light #neural-chat-message-container ::-webkit-scrollbar-track {
+  background: #f8fafc !important;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb,
+[class*="bg-zinc-950"]::-webkit-scrollbar-thumb,
+[class*="bg-zinc-900"]::-webkit-scrollbar-thumb,
+#neural-cyber-chat-drawer ::-webkit-scrollbar-thumb,
+#neural-chat-message-container::-webkit-scrollbar-thumb,
+#neural-chat-message-container ::-webkit-scrollbar-thumb {
+  background: rgba(239, 68, 68, 0.35) !important;
+  border-radius: 4px;
+}
+
+/* Light mode overrides for scrollbar-thin thumbs */
+.light .scrollbar-thin::-webkit-scrollbar-thumb,
+.light [class*="bg-zinc-950"]::-webkit-scrollbar-thumb,
+.light [class*="bg-zinc-900"]::-webkit-scrollbar-thumb,
+.light #neural-cyber-chat-drawer ::-webkit-scrollbar-thumb,
+.light #neural-chat-message-container::-webkit-scrollbar-thumb,
+.light #neural-chat-message-container ::-webkit-scrollbar-thumb {
+  background: #fca5a5 !important;
+  border-radius: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover,
+[class*="bg-zinc-950"]::-webkit-scrollbar-thumb:hover,
+[class*="bg-zinc-900"]::-webkit-scrollbar-thumb:hover,
+#neural-cyber-chat-drawer ::-webkit-scrollbar-thumb:hover,
+#neural-chat-message-container::-webkit-scrollbar-thumb:hover,
+#neural-chat-message-container ::-webkit-scrollbar-thumb:hover {
+  background: rgba(239, 68, 68, 0.7) !important;
+}
+
+/* Light mode overrides for scrollbar-thin thumbs hover */
+.light .scrollbar-thin::-webkit-scrollbar-thumb:hover,
+.light [class*="bg-zinc-950"]::-webkit-scrollbar-thumb:hover,
+.light [class*="bg-zinc-900"]::-webkit-scrollbar-thumb:hover,
+.light #neural-cyber-chat-drawer ::-webkit-scrollbar-thumb:hover,
+.light #neural-chat-message-container::-webkit-scrollbar-thumb:hover,
+.light #neural-chat-message-container ::-webkit-scrollbar-thumb:hover {
+  background: #ef4444 !important;
+}
+
+.scrollbar-thin,
+#neural-cyber-chat-drawer *,
+#neural-chat-message-container * {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(239, 68, 68, 0.35) rgba(10, 10, 13, 0.95);
+}
+
+.light .scrollbar-thin,
+.light #neural-cyber-chat-drawer *,
+.light #neural-chat-message-container * {
+  scrollbar-width: thin;
+  scrollbar-color: #fca5a5 #f8fafc !important;
+}
+
+/* Custom glassmorphism helpers */
+.glass-panel {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: var(--border-primary) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.glass-panel:hover {
+  border-color: rgba(239, 68, 68, 0.25) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.neon-glow-red {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.15), inset 0 0 15px rgba(239, 68, 68, 0.05);
+}
+
+.text-glow-red {
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+}
+
+/* Premium gradient grids and backgrounds */
+.gradient-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+}
+
+/* Glowing dot in grid background */
+.radial-crimson-spotlight {
+  background: radial-gradient(circle 500px at 50% 50%, rgba(239, 68, 68, 0.08), transparent 70%);
+}
+
+.light .radial-crimson-spotlight,
+.light .neon-glow-red,
+.light .text-glow-red {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Also hide any manual red-tinted background glows and blur elements inside light theme */
+.light .bg-radial,
+.light .blur-3xl,
+.light .blur-xl {
+  background: transparent !important;
+  background-image: none !important;
+  display: none !important;
+}
+
+.light .glass-panel:hover {
+  border-color: rgba(15, 23, 42, 0.22) !important;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Fix browser rendering bug where backdrop-filter and overflow-hidden on rounded elements makes borders square */
+[class*="backdrop-blur-"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  isolation: isolate;
+}
+
+/* LIGHT THEME POLISHING */
+.light {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Ensure all glass panels are bright white with fine borders */
+.light .glass-panel {
+  background: var(--glass-bg) !important;
+  border-color: var(--border-primary) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+/* For light theme, let gradients shine! But make sure we handle custom background overlays gracefully */
+.light .absolute[class*="bg-gradient-to-tr"][className*="to-red-500/[0.01]"],
+.light .absolute[class*="bg-gradient-to-br"][className*="to-transparent"] {
+  opacity: 0.15 !important;
+}
+
+/* Refine text colors globally under light mode to avoid washed out zinc classes */
+.light .text-zinc-100 { color: #0f172a !important; } /* Dark slate-900 */
+.light .text-zinc-200 { color: #1e293b !important; } /* Dark slate-800 */
+.light .text-zinc-350 { color: #2d3748 !important; } /* Dark slate-750 */
+.light .text-zinc-300 { color: #334155 !important; } /* Slate-700 */
+.light .text-zinc-400 { color: #475569 !important; } /* Slate-600 */
+.light .text-zinc-500 { color: #475569 !important; } /* Slate-600 (was #64748b) for perfect small text visibility */
+.light .text-zinc-650 { color: #1e293b !important; } /* Dark slate-800 */
+.light .text-zinc-600 { color: #52525b !important; } /* Zinc-600 */
+
+/* Ensure all zinc backgrounds reflect beautiful high contrast white/slates in light mode */
+.light .bg-zinc-950 { background-color: #ffffff !important; }
+.light .bg-zinc-950\/95 { background-color: rgba(255, 255, 255, 0.95) !important; }
+.light .bg-zinc-950\/90 { background-color: rgba(255, 255, 255, 0.90) !important; }
+.light .bg-zinc-950\/85 { background-color: rgba(255, 255, 255, 0.85) !important; }
+.light .bg-zinc-950\/80 { background-color: rgba(255, 255, 255, 0.80) !important; }
+.light .bg-zinc-950\/75 { background-color: rgba(255, 255, 255, 0.75) !important; }
+.light .bg-zinc-950\/70 { background-color: rgba(255, 255, 255, 0.70) !important; }
+.light .bg-zinc-950\/60 { background-color: rgba(255, 255, 255, 0.60) !important; }
+.light .bg-zinc-950\/50 { background-color: rgba(255, 255, 255, 0.50) !important; }
+.light .bg-zinc-950\/40 { background-color: rgba(255, 255, 255, 0.40) !important; }
+.light .bg-zinc-950\/30 { background-color: rgba(255, 255, 255, 0.30) !important; }
+.light .bg-zinc-950\/20 { background-color: rgba(255, 255, 255, 0.20) !important; }
+.light .bg-zinc-950\/15 { background-color: rgba(255, 255, 255, 0.15) !important; }
+.light .bg-zinc-950\/10 { background-color: rgba(255, 255, 255, 0.10) !important; }
+
+.light .bg-zinc-900 { background-color: #f8fafc !important; }
+.light .bg-zinc-900\/95 { background-color: rgba(248, 250, 252, 0.95) !important; }
+.light .bg-zinc-900\/90 { background-color: rgba(248, 250, 252, 0.90) !important; }
+.light .bg-zinc-900\/85 { background-color: rgba(248, 250, 252, 0.85) !important; }
+.light .bg-zinc-900\/80 { background-color: rgba(248, 250, 252, 0.80) !important; }
+.light .bg-zinc-900\/60 { background-color: rgba(248, 250, 252, 0.60) !important; }
+.light .bg-zinc-900\/40 { background-color: rgba(248, 250, 252, 0.40) !important; }
+.light .bg-zinc-900\/30 { background-color: rgba(248, 250, 252, 0.30) !important; }
+.light .bg-zinc-900\/20 { background-color: rgba(248, 250, 252, 0.20) !important; }
+.light .bg-zinc-900\/10 { background-color: rgba(248, 250, 252, 0.10) !important; }
+
+.light .bg-zinc-850 { background-color: #f1f5f9 !important; }
+.light .bg-zinc-800 { background-color: #e2e8f0 !important; }
+
+/* ==========================================================================
+   PERFECT CONSISTENT GLASS BORDER TRANSPARENCY SYSTEM FOR BOTH DESIGNS
+   ========================================================================== */
+
+/* DARK MODE (Default Root Styles) */
+/* Real Frosted Glass (iOS Style) for Dark Mode translucent backgrounds */
+.bg-zinc-950\/95,
+.bg-zinc-950\/90,
+.bg-zinc-950\/85,
+.bg-zinc-950\/80,
+.bg-zinc-950\/75,
+.bg-zinc-950\/70,
+.bg-zinc-900\/95,
+.bg-zinc-900\/90,
+.bg-zinc-900\/85,
+.bg-zinc-900\/80,
+.glass-panel {
+  background-color: rgba(10, 10, 14, 0.62) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  border-width: 1px;
+}
+
+.bg-zinc-950\/60,
+.bg-zinc-950\/50,
+.bg-zinc-950\/40,
+.bg-zinc-950\/30,
+.bg-zinc-900\/60,
+.bg-zinc-900\/50,
+.bg-zinc-900\/40,
+.bg-zinc-900\/30 {
+  background-color: rgba(10, 10, 14, 0.42) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+}
+
+/* Map all zinc-based borders to elegant transparent white accents (perfect for glass on dark backgrounds to remove harsh solid edges) */
+[class*="border-zinc-"],
+.border-zinc-800,
+.border-zinc-850,
+.border-zinc-900,
+.border-zinc-950 {
+  border-color: rgba(255, 255, 255, 0.12) !important; /* Crisp, default subtle glass edge */
+}
+
+/* Explicit class-based overrides for escaped Tailwind v4 / standard styling, making transparency perfectly equal and consistent */
+.border-zinc-950\/95, .border-zinc-950\/90, .border-zinc-950\/85, .border-zinc-950\/80,
+.border-zinc-900\/95, .border-zinc-900\/90, .border-zinc-900\/85, .border-zinc-900\/80,
+.border-zinc-800\/95, .border-zinc-800\/90, .border-zinc-800\/85, .border-zinc-800\/80,
+.border-zinc-850\/95, .border-zinc-850\/90, .border-zinc-850\/85, .border-zinc-850\/80,
+.border-zinc-700\/90, .border-zinc-700\/80 {
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+.border-zinc-950\/60, .border-zinc-950\/50, .border-zinc-950\/40,
+.border-zinc-900\/60, .border-zinc-900\/50, .border-zinc-900\/40,
+.border-zinc-800\/60, .border-zinc-800\/50, .border-zinc-800\/40,
+.border-zinc-850\/60, .border-zinc-850\/50, .border-zinc-850\/40,
+.border-zinc-700\/60, .border-zinc-700\/55, .border-zinc-700\/50, .border-zinc-700\/40 {
+  border-color: rgba(255, 255, 255, 0.11) !important;
+}
+
+.border-zinc-950\/30, .border-zinc-950\/25, .border-zinc-950\/20, .border-zinc-950\/15, .border-zinc-950\/10, .border-zinc-950\/5,
+.border-zinc-900\/30, .border-zinc-900\/25, .border-zinc-900\/20, .border-zinc-900\/15, .border-zinc-900\/10, .border-zinc-900\/5,
+.border-zinc-800\/30, .border-zinc-800\/25, .border-zinc-800\/20, .border-zinc-800\/15, .border-zinc-800\/10, .border-zinc-800\/5,
+.border-zinc-850\/30, .border-zinc-850\/25, .border-zinc-850\/20, .border-zinc-850\/15, .border-zinc-850\/10, .border-zinc-850\/5,
+.border-zinc-700\/30, .border-zinc-700\/20, .border-zinc-700\/15, .border-zinc-700\/10 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Explicit non-opacity fallback classes for dark mode */
+.border-zinc-800 { border-color: rgba(255, 255, 255, 0.14) !important; }
+.border-zinc-850 { border-color: rgba(255, 255, 255, 0.12) !important; }
+.border-zinc-900 { border-color: rgba(255, 255, 255, 0.10) !important; }
+.border-zinc-950 { border-color: rgba(255, 255, 255, 0.08) !important; }
+
+/* LIGHT MODE */
+/* Real Frosted Glass (iOS Style) for Light Mode translucent backgrounds */
+.light .bg-zinc-950\/95,
+.light .bg-zinc-950\/90,
+.light .bg-zinc-950\/85,
+.light .bg-zinc-950\/80,
+.light .bg-zinc-950\/75,
+.light .bg-zinc-950\/70,
+.light .bg-zinc-900\/95,
+.light .bg-zinc-900\/90,
+.light .bg-zinc-900\/85,
+.light .bg-zinc-900\/80 {
+  background-color: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  border-width: 1px;
+}
+
+.light .bg-zinc-950\/60,
+.light .bg-zinc-950\/50,
+.light .bg-zinc-950\/40,
+.light .bg-zinc-950\/30,
+.light .bg-zinc-900\/60,
+.light .bg-zinc-900\/50,
+.light .bg-zinc-900\/40,
+.light .bg-zinc-900\/30 {
+  background-color: rgba(255, 255, 255, 0.42) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+}
+
+/* Match identical transparency weights inside Light Mode using transparent slate-black */
+.light [class*="border-zinc-"],
+.light .border-zinc-800,
+.light .border-zinc-850,
+.light .border-zinc-900,
+.light .border-zinc-950 {
+  border-color: rgba(15, 23, 42, 0.24) !important; /* Crisp, default subtle glass edge */
+}
+
+/* Explicit class-based overrides for escaped Tailwind v4 / standard styling, making transparency perfectly equal and consistent */
+.light .border-zinc-950\/95, .light .border-zinc-950\/90, .light .border-zinc-950\/85, .light .border-zinc-950\/80,
+.light .border-zinc-900\/95, .light .border-zinc-900\/90, .light .border-zinc-900\/85, .light .border-zinc-900\/80,
+.light .border-zinc-800\/95, .light .border-zinc-800\/90, .light .border-zinc-800\/85, .light .border-zinc-800\/80,
+.light .border-zinc-850\/95, .light .border-zinc-850\/90, .light .border-zinc-850\/85, .light .border-zinc-850\/80,
+.light .border-zinc-700\/90, .light .border-zinc-700\/80 {
+  border-color: rgba(15, 23, 42, 0.32) !important;
+}
+
+.light .border-zinc-950\/60, .light .border-zinc-950\/50, .light .border-zinc-950\/40,
+.light .border-zinc-900\/60, .light .border-zinc-900\/50, .light .border-zinc-900\/40,
+.light .border-zinc-800\/60, .light .border-zinc-800\/50, .light .border-zinc-800\/40,
+.light .border-zinc-850\/60, .light .border-zinc-850\/50, .light .border-zinc-850\/40,
+.light .border-zinc-700\/60, .light .border-zinc-700\/55, .light .border-zinc-700\/50, .light .border-zinc-700\/40 {
+  border-color: rgba(15, 23, 42, 0.24) !important;
+}
+
+.light .border-zinc-950\/30, .light .border-zinc-950\/25, .light .border-zinc-950\/20, .light .border-zinc-950\/15, .light .border-zinc-950\/10, .light .border-zinc-950\/5,
+.light .border-zinc-900\/30, .light .border-zinc-900\/25, .light .border-zinc-900\/20, .light .border-zinc-900\/15, .light .border-zinc-900\/10, .light .border-zinc-900\/5,
+.light .border-zinc-800\/30, .light .border-zinc-800\/25, .light .border-zinc-800\/20, .light .border-zinc-800\/15, .light .border-zinc-800\/10, .light .border-zinc-800\/5,
+.light .border-zinc-850\/30, .light .border-zinc-850\/25, .light .border-zinc-850\/20, .light .border-zinc-850\/15, .light .border-zinc-850\/10, .light .border-zinc-850\/5,
+.light .border-zinc-700\/30, .light .border-zinc-700\/20, .light .border-zinc-700\/15, .light .border-zinc-700\/10 {
+  border-color: rgba(15, 23, 42, 0.18) !important;
+}
+
+/* Explicit non-opacity fallback classes for light mode */
+.light .border-zinc-800 { border-color: rgba(15, 23, 42, 0.28) !important; }
+.light .border-zinc-850 { border-color: rgba(15, 23, 42, 0.24) !important; }
+.light .border-zinc-900 { border-color: rgba(15, 23, 42, 0.20) !important; }
+.light .border-zinc-950 { border-color: rgba(15, 23, 42, 0.16) !important; }
+
+/* Let's fix input wrappers and inputs in forms, preventing transparent playground inputs from turning white */
+.light input:not([class*="bg-transparent"]),
+.light textarea:not([class*="bg-transparent"]),
+.light select {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+.light input.bg-transparent {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  border-width: 0 !important;
+  color: #0f172a !important;
+}
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Fix dark red/maroon containers to bright soft crimson pastels */
+.light .bg-red-950,
+.light .bg-red-950\/80,
+.light .bg-red-950\/60,
+.light .bg-red-950\/40,
+.light .bg-red-950\/30,
+.light .bg-red-950\/20,
+.light .bg-red-950\/15 {
+  background-color: rgba(239, 68, 68, 0.08) !important;
+  border-color: rgba(239, 68, 68, 0.15) !important;
+}
+.light .text-red-400,
+.light .text-red-300,
+.light .text-red-200,
+.light .text-red-100 {
+  color: #dc2626 !important;
+}
+
+/* Beautiful light mode custom overrides for background gradients, eliminating dark playground styling in light mode */
+.light .from-emerald-950 { --tw-gradient-from: #f0fdf4 !important; }
+.light .to-green-900 { --tw-gradient-to: #d1fae5 !important; }
+.light .from-cyan-950 { --tw-gradient-from: #f0fdfa !important; }
+.light .to-slate-900 { --tw-gradient-to: #e0f2fe !important; }
+.light .from-zinc-950 { --tw-gradient-from: #f8fafc !important; }
+.light .to-red-950 { --tw-gradient-to: #fee2e2 !important; }
+.light .from-stone-900 { --tw-gradient-from: #fafaf9 !important; }
+.light .from-purple-950 { --tw-gradient-from: #faf5ff !important; }
+.light .to-rose-950 { --tw-gradient-to: #ffe4e6 !important; }
+.light .from-amber-950 { --tw-gradient-from: #fffbeb !important; }
+.light .to-orange-950 { --tw-gradient-to: #ffedd5 !important; }
+.light .from-teal-950 { --tw-gradient-from: #f0fdfa !important; }
+.light .from-green-950 { --tw-gradient-from: #f0fdf4 !important; }
+.light .to-black { --tw-gradient-to: #dcfce7 !important; }
+
+/* Sticker item custom high-contrast text color overrides inside light theme */
+.light .text-green-300 { color: #16a34a !important; }
+.light .text-cyan-300 { color: #0284c7 !important; }
+.light .text-red-300 { color: #dc2626 !important; }
+.light .text-stone-300 { color: #44403c !important; }
+.light .text-purple-300 { color: #7c3aed !important; }
+.light .text-orange-300 { color: #ea580c !important; }
+.light .text-teal-300 { color: #0d9488 !important; }
+.light .text-lime-300 { color: #16a34a !important; }
+
+/* Fix orange/blue/purple etc badges */
+.light .bg-orange-950\/40 { background-color: rgba(249, 115, 22, 0.08) !important; border-color: rgba(249, 115, 22, 0.15) !important; }
+.light .text-orange-400 { color: #ea580c !important; }
+
+.light .bg-blue-950\/40 { background-color: rgba(59, 130, 246, 0.08) !important; border-color: rgba(59, 130, 246, 0.15) !important; }
+.light .text-blue-400 { color: #2563eb !important; }
+
+.light .bg-emerald-950\/40 { background-color: rgba(16, 185, 129, 0.08) !important; border-color: rgba(16, 185, 129, 0.15) !important; }
+.light .text-emerald-400 { color: #16a34a !important; }
+
+.light .bg-purple-950\/40 { background-color: rgba(168, 85, 247, 0.08) !important; border-color: rgba(168, 85, 247, 0.15) !important; }
+.light .text-purple-400 { color: #9333ea !important; }
+
+.light .bg-amber-950\/40 { background-color: rgba(245, 158, 11, 0.08) !important; border-color: rgba(245, 158, 11, 0.15) !important; }
+.light .text-amber-400 { color: #d97706 !important; }
+
+/* Exclude the floating chat bubble and its animated items from solid color conversion */
+.light .fixed.bottom-6:not(.scroll-top-btn) .bg-gradient-to-tr {
+  background: linear-gradient(135deg, #ef4444, #991b1b) !important;
+}
+.light .fixed.bottom-6:not(.scroll-top-btn) svg {
+  color: #ffffff !important;
+}
+
+/* Custom scroll-top-btn light mode style overrides to prevent blank box appearance */
+.light .scroll-top-btn {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
+  box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.1), 0 8px 10px -6px rgba(239, 68, 68, 0.08) !important;
+}
+.light .scroll-top-btn:hover {
+  background-color: #fee2e2 !important;
+  border-color: #ef4444 !important;
+}
+.light .scroll-top-btn svg {
+  color: #ef4444 !important;
+}
+
+/* Adjust scrollbar colors in light mode to match crimson theme aesthetic */
+.light ::-webkit-scrollbar-track {
+  background: #fef2f2;
+}
+.light ::-webkit-scrollbar-thumb {
+  background: #fca5a5;
+  border-radius: 3px;
+}
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #ef4444;
+}
+
+/* Beautiful custom soft hover glow for interactive components and cards */
+.hover-glow-red {
+  transition: box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.hover-glow-red:hover {
+  box-shadow: 0 12px 36px -12px rgba(239, 68, 68, 0.22), 
+              0 0 18px 2px rgba(239, 68, 68, 0.08) !important;
+  border-color: rgba(239, 68, 68, 0.42) !important;
+}
+
+.light .hover-glow-red:hover {
+  box-shadow: 0 12px 32px -12px rgba(239, 68, 68, 0.14), 
+              0 0 14px 1px rgba(239, 68, 68, 0.05) !important;
+  border-color: rgba(239, 68, 68, 0.32) !important;
+}
+
+/* Hide scrollbars for crisp modern side-scrolling menus */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
+/* Premium Company-Specific Dynamic Cards styling custom mappings */
+.company-card {
+  border-color: var(--company-border-dark) !important;
+  background-color: rgba(9, 9, 11, 0.88) !important;
+  transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.company-card:hover {
+  border-color: var(--company-border-hover-dark) !important;
+  box-shadow: 0 10px 30px -8px var(--company-border-hover-dark),
+              0 0 15px 1px var(--company-glow-dark) !important;
+}
+.company-card-glow {
+  background: radial-gradient(circle at 100% 0%, var(--company-glow-dark) 0%, transparent 70%);
+}
+.company-logo-container {
+  background-color: var(--company-badge-bg-dark) !important;
+  border-color: var(--company-badge-border-dark) !important;
+  color: var(--company-badge-text-dark) !important;
+}
+.status-badge-active {
+  color: var(--company-badge-text-dark) !important;
+  background-color: var(--company-badge-bg-dark) !important;
+  border-color: var(--company-badge-border-dark) !important;
+}
+.status-badge-completed {
+  color: #71717a !important;
+  background-color: rgba(24, 24, 27, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+.company-calendar-icon {
+  color: var(--company-badge-text-dark) !important;
+}
+
+/* Light Theme overrides for Company Cards */
+.light .company-card {
+  border-color: var(--company-border-light) !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+.light .company-card:hover {
+  border-color: var(--company-border-hover-light) !important;
+  box-shadow: 0 10px 30px -8px var(--company-border-hover-light),
+              0 0 15px 1px var(--company-glow-light) !important;
+}
+.light .company-card-glow {
+  background: radial-gradient(circle at 100% 0%, var(--company-glow-light) 0%, transparent 70%);
+}
+.light .company-logo-container {
+  background-color: var(--company-badge-bg-light) !important;
+  border-color: var(--company-badge-border-light) !important;
+  color: var(--company-badge-text-light) !important;
+}
+.light .status-badge-active {
+  color: var(--company-badge-text-light) !important;
+  background-color: var(--company-badge-bg-light) !important;
+  border-color: var(--company-badge-border-light) !important;
+}
+.light .status-badge-completed {
+  color: #6b7280 !important;
+  background-color: rgba(120, 120, 120, 0.07) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+.light .company-calendar-icon {
+  color: var(--company-badge-text-light) !important;
+}
+
+/* 
+ * --------------------------------------------------------------------------
+ * ULTRA-SMOOTH VIEW TRANSITIONS & GPU PATHWAY FOR ZERO-JANK THEME TOGGLING 
+ * --------------------------------------------------------------------------
+ */
+
+/* Disable all standard layout/border/color transitions during the snapshot capture */
+.view-transition, 
+.view-transition * {
+  transition: none !important;
+  animation-delay: 0s !important;
+  animation-duration: 0s !important;
+}
+
+/* Setup custom View Transition animators */
+::view-transition-old(root) {
+  animation: 350ms cubic-bezier(0.16, 1, 0.3, 1) both fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 350ms cubic-bezier(0.16, 1, 0.3, 1) both fade-in;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+
+
+
