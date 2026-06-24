@@ -62,8 +62,8 @@ const SOCIAL_SERVICES: SocialItem[] = [
   },
   {
     name: "GitHub Profile",
-    url: "https://github.com/Fahim2493",
-    handle: "Fahim2493",
+    url: "https://github.com/amifahim404",
+    handle: "amifahim404",
     platform: "github",
     color: "text-emerald-400 border-emerald-500/10 hover:border-emerald-500/40 hover:bg-emerald-900/10",
     iconBg: "bg-emerald-900/40 text-emerald-400"
