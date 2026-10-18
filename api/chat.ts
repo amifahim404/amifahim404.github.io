@@ -112,7 +112,7 @@ export default async function handler(req: any, res: any) {
               "X-Title": "TwinFahim-v3.5 Neural Chat",
             },
             body: JSON.stringify({ model, messages, temperature }),
-            signal: AbortSignal.timeout(12000),
+            signal: AbortSignal.timeout(45000),
           });
 
           if (!r.ok) {
